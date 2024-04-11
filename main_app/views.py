@@ -2,9 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 cars = [
-    {'make': 'Dodge', 'model': 'Charger', 'year': '1969', 'description': 'General Lee'},
-    {'make': 'Plymouth', 'model': 'Road Runner', 'year': '1968', 'description': 'Best Road Runner year'},
-    {'make': 'Dodge', 'model': 'Charger Daytona', 'year': '1973', 'description': 'Richard Pettys'},
+    {'make': 'Dodge', 'model': 'Charger', 'year': '1969', 'description': 'General Lee', 'image_url': 'https://i.imgur.com/yCL886w.jpeg'},
+    {'make': 'Plymouth', 'model': 'Road Runner', 'year': '1968', 'description': 'Best Road Runner year', 'image_url': 'https://i.imgur.com/ApoNP3q.jpeg'},
+    {'make': 'Plymouth', 'model': 'Superbird', 'year': '1970', 'description': 'Richard Pettys', 'image_url':'https://i.imgur.com/J0rTd5z.jpg'},
 ]
 
 
