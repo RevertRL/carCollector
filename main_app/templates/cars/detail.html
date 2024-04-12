@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Car List</h1>
+<h1>Car Detail</h1>
 
-{% for car in cars %}
+
   <div class="card">
-    <a href="{% url 'detail' car.id %}">
     <div class="card-image">
         <img src="{{ car.image_url }}" alt="{{ car.description }}">
     </div>
@@ -15,8 +14,6 @@
       <p>Model: {{ car.model }}</p>
       <p>Year: {{ car.year }}</p>
     </div>
-    </a>
   </div>
-{% endfor %}
 
 {% endblock %}

@@ -1,11 +1,7 @@
 from django.shortcuts import render
+from .models import Car
 
 # Create your views here.
-cars = [
-    {'make': 'Dodge', 'model': 'Charger', 'year': '1969', 'description': 'General Lee', 'image_url': 'https://i.imgur.com/yCL886w.jpeg'},
-    {'make': 'Plymouth', 'model': 'Road Runner', 'year': '1968', 'description': 'Best Road Runner year by popular opinion', 'image_url': 'https://i.imgur.com/ApoNP3q.jpeg'},
-    {'make': 'Plymouth', 'model': 'Superbird', 'year': '1970', 'description': 'Richard Pettys 1970 NASCAR car', 'image_url':'https://i.imgur.com/J0rTd5z.jpg'},
-]
 
 
 def home(request):
@@ -15,6 +11,13 @@ def about_view(request):
     return render(request, 'about.html')
 
 def cars_index(request):
-    return render(request, 'cars/index.html', {
-    'cars': cars
-})
+    cars = Car.objects.all()
+    return render(request, 'cars/index.html', 
+    {
+        'cars': cars
+    }
+)
+    
+def cars_detail(request, car_id):
+    car = Car.objects.get(id=car_id)
+    return render(request,'cars/detail.html', { 'car' : car})
