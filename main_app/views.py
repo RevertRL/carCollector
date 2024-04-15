@@ -29,9 +29,9 @@ class CarCreate(CreateView):
     
 class CarUpdate(UpdateView):
   model = Car
-  fields = ['model', 'make', 'year']
+  fields = ['model', 'make', 'year', 'description']
 
-class CatDelete(DeleteView):
+class CarDelete(DeleteView):
   model = Car
   success_url = '/cars'
 
