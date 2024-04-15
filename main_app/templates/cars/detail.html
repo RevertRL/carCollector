@@ -12,12 +12,39 @@
       <span class="card-title">{{ car.description|linebreaks }}</span>
       <p>Make: {{ car.make }}</p>
       <p>Model: {{ car.model }}</p>
-      <p>Year: {{ car.year }}</p>
+      <p>Year: {{ car.year }}</p> 
     </div>
-    <div class="card-action">
-      <a href="{% url 'cars_update' car.id %}">Edit</a>
-      <a href="{% url 'cars_delete' car.id %}">Delete</a>
+    <div class="card-action black darkness-2">
+      <a href="{% url 'cars_update' car.id %}"><span class="purple-text text-accent-2">Edit</span></a>
+      <a href="{% url 'cars_delete' car.id %}"><span class="purple-text text-accent-2">Delete</span></a>
+    </div>
+    <div class="col s6">
+      <table class="striped black darkness-2 ">
+        <thead>
+          <tr><th>Date</th><th>Shows</th></tr>
+        </thead>
+        <tbody>
+          {% for carshow in car.carshow_set.all %}
+            <tr>
+              <td>{{carshow.date}}</td>
+              <td>{{carshow.get_carshow_display}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
+  <script>
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+    }); 
+
+    const selectEl = document.getElementById('id_meal');
+    M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}
