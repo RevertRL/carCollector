@@ -1,2 +1,4 @@
-tried to add google oauth and just couldnt get it working properly so removed it so the site would work 
-also no AWS due to my bank saying not today hahaha should be using it on future projects though
+so i know its not fully correct with the tuple or might be when i added the car plus car show in the admin page but 
+im looking and reviewing solutions 
+
+
