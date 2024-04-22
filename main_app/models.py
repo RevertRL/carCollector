@@ -4,11 +4,11 @@ from django.urls import reverse
 
 
 CARSHOWS = (
-    ('Chi' , 'Chicago Auto Show'),
-    ('NAi', 'North American International Auto Show'),
-    ('SFi', 'SanFrancisco International Auto Show'),
-    ('NYi', 'New York International Auto Show'),
-    ('GNR', 'Grand National Roadster Show')
+    ('Chi' , 'Chicago Auto Show, McCormick Place, Chicago IL'),
+    ('NAi', 'North American International Auto Show, Huntington Place, Detroit MI'),
+    ('SFi', 'SanFrancisco International Auto Show, 	TBD San Francisco, CA'),
+    ('NYi', 'New York International Auto Show, Jacob Javits Convention Center, Manhattan NY'),
+    ('GNR', 'Grand National Roadster Show, Fairplex, Pomona, California')
 )
 
 
@@ -29,11 +29,10 @@ class Car( models.Model):
     
 class Carshow(models.Model):
     date = models.DateField()
-    location = models.CharField(max_length=30)
     carshow = models.CharField(
-        max_length=30, 
-            choices=CARSHOWS,
-            default=CARSHOWS[0][0]
+        max_length= 100, 
+        choices=CARSHOWS,
+        default=CARSHOWS[0][0]
         )
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     

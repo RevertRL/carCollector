@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from .models import Car
+from django.shortcuts import render, redirect
+from .models import Car, Carshow, CARSHOWS
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.http import HttpResponse
+
+
+
 # Create your views here.
 
 
@@ -20,12 +24,32 @@ def cars_index(request):
     
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
-    return render(request,'cars/detail.html', { 'car' : car})
+    all_cars = Car.objects.all()
+    carshows_not_attending_dict = {}
+    
+    for each_car in all_cars:
+        if each_car.id != car.id: 
+            carshows_not_attending = Carshow.objects.filter(car=each_car)
+            carshows_not_attending_dict[each_car.id] = carshows_not_attending
+    
+    return render(request, 'cars/detail.html', {
+        'car': car,
+        'carshows_not_attending_dict': carshows_not_attending_dict
+    })
+    
+def car_attend(request, car_id, carshow_id):
+    if request.method == 'POST':
+        car = Car.objects.get(id=car_id)
+        carshow = Carshow.objects.get(id=carshow_id)
+        carshow.car = car
+        carshow.save()
+        return redirect('detail', car_id=car_id)
+    else:
+        return redirect('home')
 
 class CarCreate(CreateView):
     model = Car
     fields = '__all__'
-    
     
 class CarUpdate(UpdateView):
   model = Car
@@ -34,7 +58,3 @@ class CarUpdate(UpdateView):
 class CarDelete(DeleteView):
   model = Car
   success_url = '/cars'
-
-
-
-
